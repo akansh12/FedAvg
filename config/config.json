@@ -1,0 +1,15 @@
+{
+    "model": "SimpleCNN",
+    "dataset": "MNIST",
+    "iid": false,
+    "num_clients": 10,
+    "num_epochs": 2,
+    "lr": 0.01,
+    "num_rounds": 10,
+    "device": "cuda",
+    "batch_size": 32,
+    "optimizer": "Adam",
+    "loss_function": "CrossEntropyLoss",
+    "num_client_selection": 6,
+    "num_labels_per_client": 3
+}
