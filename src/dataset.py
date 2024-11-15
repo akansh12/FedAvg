@@ -6,7 +6,7 @@ from torchvision import datasets, transforms
 
 def load_data(config):
     if config["dataset"] == "MNIST":
-        data = datasets.MNIST('../data', train=True, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5), (0.5))]))
+        data = datasets.MNIST('./data', train=True, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5), (0.5))]))
     else:
         raise ValueError("Dataset not supported")
     
@@ -18,7 +18,7 @@ def load_data(config):
 
 def get_testloader(config):
     if config["dataset"] == "MNIST":
-        data = datasets.MNIST('../data', train=False, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5), (0.5))]))
+        data = datasets.MNIST('./data', train=False, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5), (0.5))]))
     else:
         raise ValueError("Dataset not supported")
     return torch.utils.data.DataLoader(data, batch_size=config["batch_size"], shuffle=False)

@@ -1,9 +1,9 @@
 import numpy as np
 import torch
 from torch import nn, optim
-from dataset import get_testloader, load_data, create_noniid_dataset_mnist
-from model import get_model
-from train import train, test_model
+from src.dataset import get_testloader, load_data, create_noniid_dataset_mnist
+from src.model import get_model
+from src.train import train, test_model
 
 
 class FedAVG():
