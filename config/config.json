@@ -1,6 +1,6 @@
 {
-    "model": "SimpleCNN",
-    "dataset": "MNIST",
+    "model": "ResNet18",
+    "dataset": "CIFAR10",
     "iid": false,
     "num_clients": 10,
     "num_epochs": 2,

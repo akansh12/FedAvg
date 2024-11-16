@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torchvision
 
 class SimpleCNN(nn.Module):
     def __init__(self):
@@ -23,5 +24,9 @@ class SimpleCNN(nn.Module):
 def get_model(config):
     if config["model"] == "SimpleCNN":
         return SimpleCNN()
+    elif config["model"] == "ResNet18":
+        model = torchvision.models.resnet18(weights=None)
+        model.fc = nn.Linear(512, 10)
+        return model
     else:
         raise ValueError("Model not supported")

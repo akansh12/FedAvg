@@ -7,6 +7,8 @@ from torchvision import datasets, transforms
 def load_data(config):
     if config["dataset"] == "MNIST":
         data = datasets.MNIST('./data', train=True, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5), (0.5))]))
+    elif config["dataset"] == "CIFAR10":
+        data = datasets.CIFAR10('./data', train=True, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5), (0.5))]))
     else:
         raise ValueError("Dataset not supported")
     
@@ -16,13 +18,15 @@ def load_data(config):
         client_data = create_noniid_dataset_mnist(data, config['num_clients'], config['num_labels_per_client'])
     return client_data
 
+
 def get_testloader(config):
     if config["dataset"] == "MNIST":
         data = datasets.MNIST('./data', train=False, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5), (0.5))]))
+    elif config["dataset"] == "CIFAR10":
+        data = datasets.CIFAR10('./data', train=False, download=True, transform=transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5), (0.5))]))
     else:
         raise ValueError("Dataset not supported")
     return torch.utils.data.DataLoader(data, batch_size=config["batch_size"], shuffle=False)
-
 
 def create_noniid_dataset_mnist(data, num_clients, num_labels_per_client):
     """
