@@ -22,7 +22,7 @@ class FedAVG():
 
         data_loader = torch.utils.data.DataLoader(data, batch_size=self.config["batch_size"], shuffle=True)
 
-        model, local_train_loss, local_train_accuracy, _, _ = train(model, data_loader, None, optimizer, loss_function, self.config["device"], self.config["num_epochs"])
+        model, local_train_loss, local_train_accuracy, _, _, _, _ = train(model, data_loader, None, optimizer, loss_function, self.config["device"], self.config["num_epochs"])
 
         return model.state_dict()
     
@@ -47,7 +47,7 @@ class FedAVG():
             self.global_model.load_state_dict(aggregated_weights)
             print(f"Round {round + 1} completed")
 
-            test_loss, test_accuracy = test_model(self.global_model,self.testloader, getattr(nn, self.config["loss_function"])(), self.config["device"])
-            print(f"Test Loss: {test_loss:.4f} - Test Accuracy: {test_accuracy:.4f}")
+            test_loss, test_accuracy, test_f1 = test_model(self.global_model,self.testloader, getattr(nn, self.config["loss_function"])(), self.config["device"])
+            print(f"Test Loss: {test_loss:.4f} - Test Accuracy: {test_accuracy:.4f}, Test F1: {test_f1:.4f}")
             print("-"*50)
         return self.global_model
